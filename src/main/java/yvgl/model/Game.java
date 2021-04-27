@@ -37,7 +37,7 @@ public class Game implements Serializable{
 	
 	private String genre;
 	
-	private Date release;
+	private Date releaseDate;
 	
 	@Enumerated(EnumType.STRING)
 	private ESRB esrb;
@@ -98,12 +98,12 @@ public class Game implements Serializable{
 		this.genre = genre;
 	}
 
-	public Date getRelease() {
-		return release;
+	public Date getReleaseDate() {
+		return releaseDate;
 	}
 
-	public void setRelease(Date release) {
-		this.release = release;
+	public void setRelease(Date releaseDate) {
+		this.releaseDate = releaseDate;
 	}
 
 	public ESRB getEsrb() {
@@ -118,7 +118,7 @@ public class Game implements Serializable{
 		this(0, "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", new Date(System.currentTimeMillis()), ESRB.E);
 	}
 
-	public Game(long id, String title, String description, String platform, String developer, String publisher, String genre, Date release,
+	public Game(long id, String title, String description, String platform, String developer, String publisher, String genre, Date releaseDate,
 			ESRB esrb) {
 		super();
 		this.id = id;
@@ -128,14 +128,14 @@ public class Game implements Serializable{
 		this.developer = developer;
 		this.publisher = publisher;
 		this.genre = genre;
-		this.release = release;
+		this.releaseDate = releaseDate;
 		this.esrb = esrb;
 	}
 
 	@Override
 	public String toString() {
 		return "Game [id=" + id + ", title=" + title + ", description=" + description + ", platform=" + platform
-				+ ", developer=" + developer + ", publisher=" + publisher + ", genre=" + genre + ", release=" + release
+				+ ", developer=" + developer + ", publisher=" + publisher + ", genre=" + genre + ", releaseDate=" + releaseDate
 				+ ", esrb=" + esrb + "]";
 	}
 }

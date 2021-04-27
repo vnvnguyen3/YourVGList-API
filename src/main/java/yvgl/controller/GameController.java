@@ -55,7 +55,7 @@ public class GameController {
 	
 	@PutMapping("update/game/{id}")
 	public String updateGame(@RequestBody Game game) {
-		Optional<Game> found = repo.findByID(game.getId());
+		Optional<Game> found = repo.findById(game.getId());
 		
 		if(found.isPresent()) {
 			repo.save(game);
@@ -70,7 +70,7 @@ public class GameController {
 		long id = Long.parseLong(titleUpdate.get("id"));
 		String title = titleUpdate.get("title");
 		
-		Optional<Game> found = repo.findByID(id);
+		Optional<Game> found = repo.findById(id);
 		
 		if(found.isPresent()) {
 			Game toUpdate = found.get();
@@ -84,7 +84,7 @@ public class GameController {
 	
 	@DeleteMapping("/delete/game/{id}")
 	public ResponseEntity<String> deleteGame(@PathVariable long id) {
-		Optional<Game> found = repo.findByID(id);
+		Optional<Game> found = repo.findById(id);
 		
 		if(found.isPresent()) {
 			repo.deleteById(id);

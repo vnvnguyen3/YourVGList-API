@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.Range;
 
@@ -28,9 +31,13 @@ public class ListItem {
 	
 	@Range(min = 1, max = 5)
 	private int rating;
-	
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "game_id")
 	private Game game;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
 	private User user;
 	
 	@Enumerated(EnumType.STRING)

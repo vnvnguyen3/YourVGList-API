@@ -11,7 +11,7 @@ import yvgl.model.Game;
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long>{
 	
-	Optional<Game> findByID(Long id);
+	Optional<Game> findById(Long id);
 	
 	List<Game> findByPlatform(String platform);
 
