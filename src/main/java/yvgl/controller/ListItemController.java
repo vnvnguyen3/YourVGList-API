@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import yvgl.exception.ResourceNotFoundException;
 import yvgl.model.ListItem;
 import yvgl.repository.ListItemRepository;
 
@@ -35,7 +36,7 @@ public class ListItemController {
 	}
 	
 	@GetMapping("listItems/{id}")
-	public ListItem getListItem(@PathVariable long id) {
+	public ListItem getListItem(@PathVariable long id) throws ResourceNotFoundException {
 		Optional<ListItem> optListItem = repo.findById(id);
 
 		if(optListItem.isPresent()) {
@@ -46,7 +47,7 @@ public class ListItemController {
 	}
 	
 	@PutMapping("update/listItem/{id}")
-	public String updateListItem(@RequestBody ListItem listItem) {
+	public String updateListItem(@RequestBody ListItem listItem) throws ResourceNotFoundException {
 		Optional<ListItem> found = repo.findById(listItem.getId());
 		
 		if(found.isPresent()) {
@@ -58,7 +59,7 @@ public class ListItemController {
 	}
 	
 	@DeleteMapping("delete/listItems/{id}")
-	public long deleteRating(@PathVariable long id) {
+	public long deleteRating(@PathVariable long id) throws ResourceNotFoundException {
 		repo.deleteById(id);
 		return id;
 	}

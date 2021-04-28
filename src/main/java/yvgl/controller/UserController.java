@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import yvgl.exception.ResourceNotFoundException;
 import yvgl.model.User;
 import yvgl.repository.UserRepository;
 
@@ -40,7 +41,7 @@ public class UserController {
 	}
 	
 	@GetMapping("users/{id}")
-	public User getUser(@PathVariable long id) {
+	public User getUser(@PathVariable long id) throws ResourceNotFoundException {
 		Optional<User> optUser = repo.findById(id);
 		
 		if(optUser.isPresent()) {
@@ -66,7 +67,7 @@ public class UserController {
 	}
 	
 	@PutMapping("update/user/{id}")
-	public String updateUser(@RequestBody User user) {
+	public String updateUser(@RequestBody User user) throws ResourceNotFoundException {
 		Optional<User> found = repo.findById(user.getId());
 		
 		if(found.isPresent()) {
@@ -134,7 +135,7 @@ public class UserController {
 	
 	//DELETE
 	@DeleteMapping("/delete/user/{id}")
-	public ResponseEntity<String> deleteUser(@PathVariable long id){
+	public ResponseEntity<String> deleteUser(@PathVariable long id) throws ResourceNotFoundException {
 		Optional<User> found = repo.findById(id);
 		
 		if(found.isPresent()) {

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import yvgl.exception.ResourceNotFoundException;
+
 import yvgl.model.Game;
 import yvgl.repository.GameRepository;
 
@@ -38,7 +40,7 @@ public class GameController {
 	}
 	
 	@GetMapping("games/{id}")
-	public Game getGame(@PathVariable long id) {
+	public Game getGame(@PathVariable long id) throws ResourceNotFoundException {
 		Optional<Game> optGame = repo.findById(id);
 		
 		if(optGame.isPresent()) {
@@ -54,7 +56,7 @@ public class GameController {
 	}
 	
 	@PutMapping("update/game/{id}")
-	public String updateGame(@RequestBody Game game) {
+	public String updateGame(@RequestBody Game game) throws ResourceNotFoundException {
 		Optional<Game> found = repo.findById(game.getId());
 		
 		if(found.isPresent()) {
@@ -83,7 +85,7 @@ public class GameController {
 	}
 	
 	@DeleteMapping("/delete/game/{id}")
-	public ResponseEntity<String> deleteGame(@PathVariable long id) {
+	public ResponseEntity<String> deleteGame(@PathVariable long id) throws ResourceNotFoundException {
 		Optional<Game> found = repo.findById(id);
 		
 		if(found.isPresent()) {
