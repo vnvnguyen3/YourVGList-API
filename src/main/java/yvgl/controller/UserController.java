@@ -65,6 +65,11 @@ public class UserController {
 		return new User();
 	}
 	
+	@GetMapping("users/userName/{userName}")
+	public Optional<User> getUserByUserName(@PathVariable String userName){
+		return repo.findByUserName(userName);
+	}
+	
 	@GetMapping("users/firstname/{firstName}")
 	public List<User> getUserByFirstName(@PathVariable String firstName){
 		return repo.findByFirstName(firstName);
@@ -156,7 +161,7 @@ public class UserController {
 			repo.deleteById(id);
 			return ResponseEntity.status(200).body("Deleted user with id = " + id);
 		} else {
-			return ResponseEntity.status(404).body("Student with id = " + id + " not found.");
+			return ResponseEntity.status(404).body("User with id = " + id + " not found.");
 		}
 	}
 }
