@@ -22,7 +22,7 @@ public class User implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
-	private long id;
+	private long user_id;
 	
 	@Column(nullable = false, unique = true)
 	private String userName;
@@ -44,11 +44,11 @@ public class User implements Serializable{
 	private Role role;
 
 	public long getId() {
-		return id;
+		return user_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getUserName() {
@@ -111,10 +111,10 @@ public class User implements Serializable{
 		this(0, "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", Role.USER);
 	}
 
-	public User(long id, String userName, String password, String firstName, String lastName, String description,
+	public User(long user_id, String userName, String password, String firstName, String lastName, String description,
 			String email, Role role) {
 		super();
-		this.id = id;
+		this.user_id = user_id;
 		this.userName = userName;
 		this.password = password;
 		this.firstName = firstName;
@@ -126,7 +126,7 @@ public class User implements Serializable{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
+		return "User [id=" + user_id + ", userName=" + userName + ", password=" + password + ", firstName=" + firstName
 				+ ", lastName=" + lastName + ", description=" + description + ", email=" + email + ", role=" + role
 				+ "]";
 	}

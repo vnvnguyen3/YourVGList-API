@@ -152,6 +152,24 @@ public class UserController {
 		}
 	}
 	
+	@PatchMapping("update/user/description")
+	public String updateDescription(@RequestBody Map<String, String> descriptionUpdate) {
+		
+		long id = Long.parseLong(descriptionUpdate.get("id"));
+		String description = descriptionUpdate.get("description");
+		
+		Optional<User> found = repo.findById(id);
+		
+		if(found.isPresent()) {
+			User toUpdate = found.get();
+			toUpdate.setDescription(description);
+			repo.save(toUpdate);
+			return description;
+		} else {
+			return "Could not find user with id = " + id;
+		}
+	}
+	
 	//DELETE
 	@DeleteMapping("/delete/user/{id}")
 	public ResponseEntity<String> deleteUser(@PathVariable long id) throws ResourceNotFoundException {

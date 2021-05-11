@@ -22,7 +22,7 @@ public class Game implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "game_id")
-	private long id;
+	private long game_id;
 	
 	@Column(nullable = false, unique = true)
 	private String title;
@@ -43,11 +43,11 @@ public class Game implements Serializable{
 	private ESRB esrb;
 
 	public long getId() {
-		return id;
+		return game_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long game_id) {
+		this.game_id = game_id;
 	}
 
 	public String getTitle() {
@@ -118,10 +118,10 @@ public class Game implements Serializable{
 		this(0, "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", new Date(System.currentTimeMillis()), ESRB.E);
 	}
 
-	public Game(long id, String title, String description, String platform, String developer, String publisher, String genre, Date releaseDate,
+	public Game(long game_id, String title, String description, String platform, String developer, String publisher, String genre, Date releaseDate,
 			ESRB esrb) {
 		super();
-		this.id = id;
+		this.game_id = game_id;
 		this.title = title;
 		this.description = description;
 		this.platform = platform;
@@ -134,7 +134,7 @@ public class Game implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Game [id=" + id + ", title=" + title + ", description=" + description + ", platform=" + platform
+		return "Game [id=" + game_id + ", title=" + title + ", description=" + description + ", platform=" + platform
 				+ ", developer=" + developer + ", publisher=" + publisher + ", genre=" + genre + ", releaseDate=" + releaseDate
 				+ ", esrb=" + esrb + "]";
 	}

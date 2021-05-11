@@ -1,5 +1,6 @@
 package yvgl.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,16 +28,16 @@ public class ListItem {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "list_item_id")
-	private long id;
+	private long list_item_id;
 	
-	@Range(min = 1, max = 5)
+	@Range(min = 1, max = 10)
 	private int rating;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "game_id")
 	private Game game;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;
 	
@@ -47,11 +48,11 @@ public class ListItem {
 	private Status status;
 
 	public long getId() {
-		return id;
+		return list_item_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long list_item_id) {
+		this.list_item_id = list_item_id;
 	}
 
 	public int getRating() {
@@ -98,17 +99,17 @@ public class ListItem {
 		this(-1, 1, Priority.Low, Status.Plan);
 	}
 
-	public ListItem(long id, @Range(min = 1, max = 5) int rating, Priority priority, Status status) {
+	public ListItem(long list_item_id, @Range(min = 1, max = 10) int rating, Priority priority, Status status) {
 		super();
-		this.id = id;
+		this.list_item_id = list_item_id;
 		this.rating = rating;
 		this.priority = priority;
 		this.status = status;
 	}
 
-	public ListItem(long id, @Range(min = 1, max = 5) int rating, Game game, User user, Priority priority, Status status) {
+	public ListItem(long list_item_id, @Range(min = 1, max = 10) int rating, Game game, User user, Priority priority, Status status) {
 		super();
-		this.id = id;
+		this.list_item_id = list_item_id;
 		this.rating = rating;
 		this.game = game;
 		this.user = user;
@@ -118,7 +119,7 @@ public class ListItem {
 
 	@Override
 	public String toString() {
-		return "ListItem [id=" + id + ", rating=" + rating + ", game=" + game + ", user=" + user + ", priority="
+		return "ListItem [id=" + list_item_id + ", rating=" + rating + ", game=" + game + ", user=" + user + ", priority="
 				+ priority + ", status=" + status + "]";
 	}
 }
